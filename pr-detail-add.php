@@ -18,23 +18,19 @@ if ($idprdetail != '' || $idprdetail != NULL) {
         }
     }
 } else {
-    $cekdata = mysql_query("SELECT * FROM t_pr_detail WHERE pr_header = '$idpr'");
+    $cekdata = mysql_query("SELECT * FROM t_pr_detail WHERE pr_header = '$idpr' AND item = '$item'");
     if (mysql_num_rows($cekdata) != 0) {
         while ($row = mysql_fetch_array($cekdata, MYSQL_ASSOC)) {
-            if ($row['item'] == $item) {
-                $qtyUpdate = $qty + $row['qty'];
-                $idprdetailupdate = $row['id_pr_detail'];
-                $updateQty = mysql_query("UPDATE t_pr_detail SET qty = '$qtyUpdate' WHERE id_pr_detail = '$idprdetailupdate' AND pr_header = '$idpr'") or die(mysql_error());
-                if ($updateQty) {
-                    header('location:pr-detail.php?id=' . $idpr);
-                } else {
-                    echo '2. error update quantity -> add item but update <br>';
-                    ?>
-                    <a href="pr-detail.php?id='<?php echo $idpr; ?>"> << Back </a>
-                    <?php
-                }
+            $qtyUpdate = $qty + $row['qty'];
+            $idprdetailupdate = $row['id_pr_detail'];
+            $updateQty = mysql_query("UPDATE t_pr_detail SET qty = '$qtyUpdate' WHERE id_pr_detail = '$idprdetailupdate' AND pr_header = '$idpr'") or die(mysql_error());
+            if ($updateQty) {
+                header('location:pr-detail.php?id=' . $idpr);
             } else {
-                continue;
+                echo '2. error update quantity -> add item but update <br>';
+                ?>
+                <a href="pr-detail.php?id='<?php echo $idpr; ?>"> << Back </a>
+                <?php
             }
         }
     } else {
