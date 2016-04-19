@@ -9,7 +9,7 @@ if ($idprdetail != '' || $idprdetail != NULL) {
     if (mysql_num_rows($cekdataForUpdate) != 0) {
         $updateIdAda = mysql_query("UPDATE t_pr_detail SET qty = '$qty', item = '$item' WHERE id_pr_detail = '$idprdetail'") or die(mysql_error());
         if ($updateIdAda) {
-            header("location:pr-detail.php?id='$idpr'");
+            header('location:pr-detail.php?id=' . $idpr);
         } else {
             echo '<strong>1. error update item and/or quantity</strong><br>';
             ?>

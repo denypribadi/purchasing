@@ -49,7 +49,16 @@ if (!$cekPR) {
         <script src="js/jquery-1.8.3.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
+                $('.edit-pr-detail').on('click', function() {
+                    var prd = $(this).closest('tr').attr('data-idprdetail'),
+                            icode = $(this).closest('tr').attr('data-icode'),
+                            iqty = $(this).closest('tr').attr('data-iqty');
 
+                    $('#id-item-input').val(icode);
+                    $('#id-qty-input').val(iqty);
+                    $('#id-idprdetail-hidden').val(prd);
+                    $('#id-cancel-edit').removeClass('hide');
+                });
             });
 
         </script>
@@ -219,7 +228,7 @@ if (!$cekPR) {
                                                 <button type="submit" class="btn btn-primary">
                                                     <i class="fa fa-save"></i> Save
                                                 </button>
-                                                 <a href="pr-detail.php" class="btn btn-default hide" id="id-cancel-edit"><i class="fa fa-refresh"></i> Cancel</a>
+                                                <a href="pr-detail.php?id=<?php echo $cekPR['id_pr']; ?>" class="btn btn-default hide" id="id-cancel-edit"><i class="fa fa-refresh"></i> Cancel</a>
                                             </div>
                                         </div>
                                     </form>
@@ -249,20 +258,23 @@ if (!$cekPR) {
                                                 $listDetailQuery .= "WHERE t_pr_detail.pr_header = '$idPR' ORDER BY id_pr_detail ";
                                                 $queryPRList = mysql_query($listDetailQuery);
                                                 while ($row = mysql_fetch_array($queryPRList, MYSQL_ASSOC)) {
+                                                    $prdetailid = $row['id_pr_detail'];
+                                                    $icode = $row['id_item'];
+                                                    $iname = $row['item_name'];
+                                                    $iqty = $row['qty'];
+                                                    echo '<tr data-idprdetail="' . $prdetailid . '" data-icode="' . $icode . '" data-iname="' . $iname . '" data-iqty="' . $iqty . '">';
                                                     ?>
-                                                    <tr>
-                                                        <td><?php echo $row['id_item']; ?></td>
-                                                        <td><?php echo $row['item_name']; ?></td>
-                                                        <td><?php echo $row['qty']; ?></td>
-                                                        <td align='center'>
-                                                            <a class="edit-user btn btn-warning"><i class="fa fa-edit"></i> Edit</a> &nbsp;&nbsp;
-                                                            <a href="pr-detail-delete.php?id=<?php echo $row['id_pr_detail']; ?>" class="delete-user btn btn-danger"><i class="fa fa-times"></i> Delete</a>
-
-                                                        </td>
-                                                    </tr>
-                                                    <?php
-                                                }
-                                                ?>
+                                                <td><?php echo $row['id_item']; ?></td>
+                                                <td><?php echo $row['item_name']; ?></td>
+                                                <td><?php echo $row['qty']; ?></td>
+                                                <td align='center'>
+                                                    <a class="edit-pr-detail btn btn-warning"><i class="fa fa-edit"></i> Edit</a> &nbsp;&nbsp;
+                                                    <a href="pr-detail-delete.php?id=<?php echo $row['id_pr_detail']; ?>" class="delete-user btn btn-danger"><i class="fa fa-times"></i> Delete</a>
+                                                </td>
+                                                </tr>
+                                                <?php
+                                            }
+                                            ?>
                                             </tbody>
                                         </table>
                                     </div>
