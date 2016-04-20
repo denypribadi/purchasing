@@ -232,7 +232,9 @@ $hasil = mysql_fetch_array($query);
                                                         <td><?php echo $row['department_name']; ?></td>
                                                         <td align='center'>
                                                             <a class="btn btn-info" href="pr-detail.php?id=<?php echo $row['id_pr']; ?>"><i class="fa fa-file"></i> View</a> &nbsp;&nbsp;
-                                                            <a class="btn btn-default" href="pr-print.php?id=<?php echo $row['id_pr']; ?>"><i class="fa fa-print"></i> Print</a>
+                                                            <a class="btn btn-default" href="javascript:void(0);"  
+                                                               onclick="window.open('pr-report.php?prcode=<?php echo $row['id_pr']; ?>', 'Print PR #<?php echo $row['id_pr']; ?>', 'fullscreen=yes,scrollbars=yes,resizeable=no')"><i class="fa fa-print"></i> Print</a>  
+
                                                         </td>
                                                     </tr>
                                                     <?php

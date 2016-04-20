@@ -175,7 +175,7 @@ if (!$cekPR) {
                                                 <td><?php echo strtoupper($cekPR['department_name']); ?></td>
                                             </tr>                                            
                                             <tr>
-                                                <td width="100">Request Date</td>
+                                                <td width="120">Request Date</td>
                                                 <td width="25">:</td>
                                                 <?php
                                                 $tgl = $cekPR['date'];
@@ -266,7 +266,7 @@ if (!$cekPR) {
                                                     ?>
                                                 <td><?php echo $row['id_item']; ?></td>
                                                 <td><?php echo $row['item_name']; ?></td>
-                                                <td><?php echo $row['qty']; ?></td>
+                                                <td align="right"><?php echo $row['qty']; ?></td>
                                                 <td align='center'>
                                                     <a class="edit-pr-detail btn btn-warning"><i class="fa fa-edit"></i> Edit</a> &nbsp;&nbsp;
                                                     <a href="pr-detail-delete.php?id=<?php echo $row['id_pr_detail'] . '&prcode=' . $idPR; ?>" class="delete-user btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus Item <?php echo $row['id_item'] . ' -- ' .$row['item_name']; ?> ?')"><i class="fa fa-times"></i> Delete</a>
