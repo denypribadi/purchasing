@@ -239,7 +239,7 @@ $hasil = mysql_fetch_array($query);
                                                         <td><?php echo $row['city']; ?></td>
                                                         <td align='center'>
                                                             <a class="edit-supplier btn btn-warning"><i class="fa fa-edit"></i> Edit</a> &nbsp;&nbsp;
-                                                            <a href="supplier-delete.php?id=<?php echo $row['id_supplier']; ?>" class="delete-item btn btn-danger"><i class="fa fa-times"></i> Delete</a>
+                                                            <a href="supplier-delete.php?id=<?php echo $row['id_supplier']; ?>" class="delete-item btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus Supplier <?php echo $row['id_supplier']. ' -- ' .$row['supplier_name']; ?> ?')"><i class="fa fa-times"></i> Delete</a>
                                                         </td>
                                                     </tr>
                                                     <?php

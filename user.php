@@ -225,7 +225,7 @@ $hasil = mysql_fetch_array($query);
                                                         <td><?php echo $row['full_name']; ?></td>
                                                         <td align='center'>
                                                             <a class="edit-user btn btn-warning"><i class="fa fa-edit"></i> Edit</a> &nbsp;&nbsp;
-                                                            <a href="user-delete.php?id=<?php echo $row['id_user']; ?>" class="delete-user btn btn-danger"><i class="fa fa-times"></i> Delete</a>
+                                                            <a href="user-delete.php?id=<?php echo $row['id_user']; ?>" class="delete-user btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus User <?php echo strtoupper($row['full_name']); ?> ?')"><i class="fa fa-times"></i> Delete</a>
                                                         </td>
                                                     </tr>
                                                     <?php

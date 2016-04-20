@@ -269,7 +269,7 @@ if (!$cekPR) {
                                                 <td><?php echo $row['qty']; ?></td>
                                                 <td align='center'>
                                                     <a class="edit-pr-detail btn btn-warning"><i class="fa fa-edit"></i> Edit</a> &nbsp;&nbsp;
-                                                    <a href="pr-detail-delete.php?id=<?php echo $row['id_pr_detail']; ?>" class="delete-user btn btn-danger"><i class="fa fa-times"></i> Delete</a>
+                                                    <a href="pr-detail-delete.php?id=<?php echo $row['id_pr_detail'] . '&prcode=' . $idPR; ?>" class="delete-user btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus Item <?php echo $row['id_item'] . ' -- ' .$row['item_name']; ?> ?')"><i class="fa fa-times"></i> Delete</a>
                                                 </td>
                                                 </tr>
                                                 <?php

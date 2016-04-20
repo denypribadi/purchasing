@@ -209,7 +209,7 @@ $hasil = mysql_fetch_array($query);
                                                         <td><?php echo $row['department_name']; ?></td>
                                                         <td align='center'>
                                                             <a class="edit-department btn btn-warning"><i class="fa fa-edit"></i> Edit</a> &nbsp;&nbsp;
-                                                            <a href="department-delete.php?id=<?php echo $row['id_department']; ?>" class="delete-department btn btn-danger"><i class="fa fa-times"></i> Delete</a>
+                                                            <a href="department-delete.php?id=<?php echo $row['id_department']; ?>" class="delete-department btn btn-danger" onclick="return confirm('Anda Yakin Ingin Menghapus Department <?php echo $row['department_name']; ?> ?')"><i class="fa fa-times"></i> Delete</a>
                                                         </td>
                                                     </tr>
                                                     <?php
