@@ -44,8 +44,8 @@ $hasil = mysql_fetch_array($query);
                     $('#id-iddepart-input').val(idDepart).attr('disabled', 'disabled');
                     $('#id-iddepartment-hidden').val(idDepart).removeAttr('disabled');
                     $('#id-departname-input').val(depart);
-                    $('#id-submit').val('Save Change');
                     $('#id-cancel-edit').removeClass('hide');
+                    $('#id-submit').html('<i class="fa fa-save"></i> Save Change');
                 });
             });
 

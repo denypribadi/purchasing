@@ -46,7 +46,7 @@ $hasil = mysql_fetch_array($query);
                     $('#id-iditem-hidden').val(idItem).removeAttr('disabled');
                     $('#id-itemname-input').val(item);
                     $('#id-warehouse-input').val(wh);
-                    $('#id-submit').val('Save Change');
+                    $('#id-submit').html('<i class="fa fa-save"></i> Save Change');
                     $('#id-cancel-edit').removeClass('hide');
                 });
             });
@@ -185,7 +185,7 @@ $hasil = mysql_fetch_array($query);
                                         <div class="form-group">
                                             <label class="control-label col-md-3"></label>
                                             <div class="col-md-3 col-xs-11">
-                                                <button type="submit" class="btn btn-primary">
+                                                <button type="submit" class="btn btn-primary" id="id-submit">
                                                     <i class="fa fa-save"></i> Save
                                                 </button>
                                                 <a href="item.php" class="btn btn-default hide" id="id-cancel-edit"><i class="fa fa-refresh"></i> Cancel</a>

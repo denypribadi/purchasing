@@ -7,7 +7,7 @@ $fname = mysql_real_escape_string($_GET['fullname']);
 $pass = mysql_real_escape_string($_GET['password']);
 $passMD5 = '';
 if (!empty($pass)) {
-    $passMD5 = md5($pass);
+    $passMD5 = trim(md5($pass));
 }
 $cekUser = mysql_query("SELECT * FROM m_user WHERE id_user = '$idUser'");
 if (mysql_num_rows($cekUser) != 0) {
@@ -15,7 +15,7 @@ if (mysql_num_rows($cekUser) != 0) {
     if ($row['id_user'] == $idUser) {
         $sql = "UPDATE m_user SET username = '$uname', full_name = '$fname' ";
         if (!empty($pass)) {
-            $sql .= " , password = ' $passMD5 '";
+            $sql .= " , password = '$passMD5'";
         }
         $sql .=" WHERE id_user = '$idUser'";
         mysql_query($sql);

@@ -46,8 +46,8 @@ $hasil = mysql_fetch_array($query);
                     $('#id-username-input').val(uname);
                     $('#id-fullname-input').val(fname);
                     $('#id-password-input').after('<span>leave blank if nothing changes</span>');
-                    $('#id-submit').val('Save Change');
                     $('#id-cancel-edit').removeClass('hide');
+                    $('#id-submit').html('<i class="fa fa-save"></i> Save Change');
                 });
             });
 
