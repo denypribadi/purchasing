@@ -21,7 +21,7 @@ $hasil = mysql_fetch_array($query);
         <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
         <link rel="shortcut icon" href="img/favicon.png">
 
-        <title>PO List | denypribadi</title>
+        <title>PR List | denypribadi</title>
 
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -119,8 +119,8 @@ $hasil = mysql_fetch_array($query);
                             </a>
                             <ul class="sub">
                                 <li><a  href="pr.php">Purchase Request</a></li>
-                                <li><a  href="pr-history.php">PR History</a></li>
-                                <li class="active"><a  href="po.php">Purchase Order</a></li>
+                                <li class="active"><a  href="pr-history.php">PR History</a></li>
+                                <li><a  href="po.php">Purchase Order</a></li>
                                 <li><a  href="rr.php">Receiving Order</a></li>
                             </ul>
                         </li>                  
@@ -134,70 +134,8 @@ $hasil = mysql_fetch_array($query);
             <section id="main-content">
                 <section class="wrapper site-min-height">   
                     <!--JUDUL-->
-                    <h2><i class="fa fa-shopping-cart"></i> Purchase Order List</h2>
+                    <h2><i class="fa fa-shopping-cart"></i> Purchase Request History List</h2>
                     <br>
-                    <!--PR ADD START-->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <section class="panel">
-                                <header class="panel-heading">
-                                    <a href="javascript:;"> <i class="fa fa-plus-square"></i> Create New PO</a>
-                                    <span class="tools pull-right">
-                                        <a href="javascript:;" class="fa fa-chevron-down"></a>
-                                    </span>
-                                </header>
-                                <div class="panel-body">
-                                    <form action="po-header-add.php" class="form-horizontal" method="get">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3">PO Code</label>
-                                            <div class="col-md-3 col-xs-11">
-                                                <input class="form-control form-control-inline input-medium" size="16" type="text"maxlength="5" name='idpr' id="id-idpo-input"/>
-                                                <input type="hidden" value="" name="idpo" id="id-idpr-hidden" disabled="disabled"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3">Purchase Request</label>
-                                            <div class="col-md-3 col-xs-11">
-                                                <select name="prheader" class="form-control form-control-inline input-medium" id="id-user-input">
-                                                    <?php
-                                                    $queryList = mysql_query('SELECT * FROM t_pr_header ORDER BY id_pr ASC');
-                                                    while ($row = mysql_fetch_array($queryList, MYSQL_ASSOC)) {
-                                                        echo '<option value="' . $row['id_pr'] . '">' . $row['id_pr'] . '</option>';
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3">Supplier</label>
-                                            <div class="col-md-3 col-xs-11">
-                                                <select name="supplier" class="form-control form-control-inline input-medium" id="id-department-input">
-                                                    <?php
-                                                    $querySupList = mysql_query('SELECT * FROM m_supplier');
-                                                    while ($row = mysql_fetch_array($querySupList, MYSQL_ASSOC)) {
-                                                        echo '<option value="' . $row['id_supplier'] . '">' . $row['id_supplier'] . ' -- ' . strtoupper($row['supplier_name']) . '</option>';
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3"></label>
-                                            <div class="col-md-3 col-xs-11">
-                                                <button type="submit" class="btn btn-primary">
-                                                    <i class="fa fa-save"></i> Save
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                    <!--PR ADD END-->
-
-                    <!--TABLE START-->
-
                     <div class="row">
                         <div class="col-lg-12">
                             <section class="panel">
@@ -206,35 +144,35 @@ $hasil = mysql_fetch_array($query);
                                         <table  class="display table table-bordered table-striped" id="example">
                                             <thead>
                                                 <tr>
-                                                    <th>PO Code</th>
-                                                    <th>Date</th>
                                                     <th>PR Code</th>
-                                                    <th>Supplier</th>
+                                                    <th>Request Date</th>
+                                                    <th>Request By</th>
+                                                    <th>Department</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sql = "SELECT * FROM t_po  ";
-                                                $sql .= "JOIN t_pr_header ON id_pr = pr_header ";
-                                                $sql .= "JOIN m_supplier  ON id_supplier = supplier ";
-                                                $sql .= "ORDER BY pr_header ";
-                                                $queryPOList = mysql_query($sql);
-                                                while ($row = mysql_fetch_array($queryPOList, MYSQL_ASSOC)) {
+                                                $sql = "SELECT * FROM t_pr_header ";
+                                                $sql .= "JOIN m_user ON m_user.id_user = t_pr_header.`user` ";
+                                                $sql .= "JOIN m_department ON m_department.id_department = t_pr_header.department ";
+                                                $sql .= "WHERE t_pr_header.id_pr IN (SELECT t_po.pr_header FROM t_po)";
+                                                $queryPRList = mysql_query($sql);
+                                                while ($row = mysql_fetch_array($queryPRList, MYSQL_ASSOC)) {
                                                     ?>
                                                     <tr>
-                                                        <td><?php echo $row['id_po']; ?></td>
+                                                        <td><?php echo $row['id_pr']; ?></td>
                                                         <?php
                                                         $tgl = $row['date'];
                                                         $tgl = date("d M Y", strtotime($tgl));
                                                         ?>
                                                         <td><?php echo $tgl; ?></td>
-                                                        <td><?php echo $row['pr_header']; ?></td>
-                                                        <td><?php echo $row['supplier_name']; ?></td>
+                                                        <td><?php echo $row['id_user'] . ' -- ' . strtoupper($row['full_name']); ?></td>
+                                                        <td><?php echo $row['department_name']; ?></td>
                                                         <td align='center'>
-                                                            <a class="btn btn-info" href="pr-detail.php?id=<?php echo $row['pr_header']; ?>"><i class="fa fa-file"></i> View</a> &nbsp;&nbsp;
+                                                            <a class="btn btn-info" href="pr-detail.php?id=<?php echo $row['id_pr']; ?>"><i class="fa fa-file"></i> View</a> &nbsp;&nbsp;
                                                             <a class="btn btn-default" href="javascript:void(0);"  
-                                                               onclick="window.open('po-report.php?pocode=<?php echo $row['id_po']; ?>', 'Print PO #<?php echo $row['id_po']; ?>', 'fullscreen=yes,scrollbars=yes,resizeable=no')"><i class="fa fa-print"></i> Print</a>  
+                                                               onclick="window.open('pr-report.php?prcode=<?php echo $row['id_pr']; ?>', 'Print PR #<?php echo $row['id_pr']; ?>', 'fullscreen=yes,scrollbars=yes,resizeable=no')"><i class="fa fa-print"></i> Print</a>  
 
                                                         </td>
                                                     </tr>

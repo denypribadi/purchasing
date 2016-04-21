@@ -129,6 +129,7 @@ $hasil = mysql_fetch_array($query);
                             </a>
                             <ul class="sub">
                                 <li><a  href="pr.php">Purchase Request</a></li>
+                                <li><a  href="pr-history.php">PR History</a></li>
                                 <li><a  href="po.php">Purchase Order</a></li>
                                 <li><a  href="rr.php">Receiving Order</a></li>
                             </ul>

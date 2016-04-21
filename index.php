@@ -106,6 +106,7 @@ $hasil = mysql_fetch_array($query);
                             </a>
                             <ul class="sub">
                                 <li><a  href="pr.php">Purchase Request</a></li>
+                                <li><a  href="pr-history.php">PR History</a></li>
                                 <li><a  href="po.php">Purchase Order</a></li>
                                 <li><a  href="rr.php">Receiving Order</a></li>
                             </ul>
@@ -120,7 +121,7 @@ $hasil = mysql_fetch_array($query);
             <section id="main-content">
                 <section class="wrapper site-min-height">   
                     <!--JUDUL-->
-                    <h2><i class="fa fa-wrench"></i> Modul Purchasing Masih Dalam Pengembangan</h2>
+                    <h2><i class="fa fa-wrench"></i> Modul Receiving Masih Dalam Pengembangan</h2>
                 </section>
             </section>
             <!--main content end-->

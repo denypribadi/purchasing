@@ -119,6 +119,7 @@ $hasil = mysql_fetch_array($query);
                             </a>
                             <ul class="sub">
                                 <li class="active"><a  href="pr.php">Purchase Request</a></li>
+                                <li><a  href="pr-history.php">PR History</a></li>
                                 <li><a  href="po.php">Purchase Order</a></li>
                                 <li><a  href="rr.php">Receiving Order</a></li>
                             </ul>
@@ -214,10 +215,10 @@ $hasil = mysql_fetch_array($query);
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sql = "SELECT h.id_pr, h.date ,u.id_user, u.full_name, d.department_name FROM t_pr_header h ";
-                                                $sql .= "JOIN m_user u ON u.id_user = h.`user` ";
-                                                $sql .= "JOIN m_department d ON d.id_department = h.department ";
-                                                $sql .= "ORDER BY h.id_pr";
+                                                $sql = "SELECT * FROM t_pr_header ";
+                                                $sql .= "JOIN m_user ON m_user.id_user = t_pr_header.`user` ";
+                                                $sql .= "JOIN m_department ON m_department.id_department = t_pr_header.department ";
+                                                $sql .= "WHERE t_pr_header.id_pr NOT IN (SELECT t_po.pr_header FROM t_po)";
                                                 $queryPRList = mysql_query($sql);
                                                 while ($row = mysql_fetch_array($queryPRList, MYSQL_ASSOC)) {
                                                     ?>
