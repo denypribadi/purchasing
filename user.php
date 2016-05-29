@@ -157,7 +157,7 @@ $hasil = mysql_fetch_array($query);
                                     </span>
                                 </header>
                                 <div class="panel-body">
-                                    <form action="user-add.php" class="form-horizontal" method="get">
+                                    <form action="user-add.php" class="form-horizontal" method="post"  enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label class="control-label col-md-3">ID User</label>
                                             <div class="col-md-3 col-xs-11">
@@ -181,6 +181,12 @@ $hasil = mysql_fetch_array($query);
                                             <label class="control-label col-md-3">Password</label>
                                             <div class="col-md-3 col-xs-11">
                                                 <input class="form-control form-control-inline input-medium"  size="16" type="password" name='password' id="id-password-input"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Image</label>
+                                            <div class="col-md-3 col-xs-11">
+                                                <input type="file" name="gambarid" id="id-gambar"/>
                                             </div>
                                         </div>
                                         <div class="form-group">
